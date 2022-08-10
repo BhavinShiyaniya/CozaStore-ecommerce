@@ -1,0 +1,173 @@
+{% extends 'layouts/main.html' %}
+{% load static %}
+
+{% block title %}
+Coza Store | Products
+{% endblock title %}
+
+{% block content %}
+
+<div class="container mb-3">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 mt-5 pt-5">
+            <div class="row z-depth-3">
+                <div class="col-sm-4 bg-info rounded-left">
+                    <div class="card-block text-center text-white">
+                        <i class="fa fa-user-circle fa-5x mt-5"></i>
+                        <h2 class="font-weight-bold mt-4">{{ request.user.first_name }} {{ request.user.last_name }}</h2>
+                        <p>{{ request.user.email }}</p>
+                        <i class="fa fa-edit fa-2x mb-4 text-muted"></i>
+                    </div>
+                </div>
+                <div class="col-sm-8 bg-white rounded-right">
+                    <h3 class="mt-3">My Account</h3>
+                    <hr class="badge-primary w-25 ml-2">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="font-weight-bold">Email:</p>
+                            <h6 class="text-muted">{{ request.user.email }}</h6>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="font-weight-bold">Phone:</p>
+                            <h6 class="text-muted">{{ userprofile.phone }}</h6>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-sm-12">
+                            <p class="font-weight-bold">Address:</p>
+                            <h6 class="text-muted mt-1">
+                                {{ userprofile.address }}
+                                {{ userprofile.city }}
+                                {{ userprofile.state }}
+                                {{ userprofile.country }} - 
+                                {{ userprofile.pincode }}
+                            </h6>
+                        </div>
+                    </div>
+                    <h4 class="mt-3">Shopping Details</h4>
+                    <hr class="bg-primary mt-2">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="font-weight-bold">Your Wishlist</p>
+                            <a href="{% url 'wishlist' %}" class="btn btn-danger mt-2">Your Wishlist</a>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="font-weight-bold">My Orders</p>
+                            <a href="{% url 'myorders' %}" class="btn btn-info mt-2">View All Orders</a>
+                        </div>
+                    </div>
+                    <hr class="bg-primary">
+                    <ul class="list-unstyled d-flex justify-content-center mt-4">
+                        <li><a href="#"><i class="fa fa-facebook-f px-3 h4 text-info"></i></a></li>
+                        <li><a href="#"><i class="fa fa-youtube px-3 h4 text-info"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter px-3 h4 text-info"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<script>
+    $(".js-select2").each(function () {
+        $(this).select2({
+            minimumResultsForSearch: 20,
+            dropdownParent: $(this).next('.dropDownSelect2')
+        });
+    })
+</script>
+<!--===============================================================================================-->
+<script src="{% static 'vendor/daterangepicker/moment.min.js' %}"></script>
+<script src="{% static 'vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'vendor/slick/slick.min.js' %}"></script>
+<script src="{% static 'js/slick-custom.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'vendor/parallax100/parallax100.js' %}"></script>
+<script>
+    $('.parallax100').parallax100();
+</script>
+<!--===============================================================================================-->
+<script src="{% static 'vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
+<script>
+    $('.gallery-lb').each(function () { // the containers for all your galleries
+        $(this).magnificPopup({
+            delegate: 'a', // the selector for gallery item
+            type: 'image',
+            gallery: {
+                enabled: true
+            },
+            mainClass: 'mfp-fade'
+        });
+    });
+</script>
+<!--===============================================================================================-->
+<script src="{% static 'vendor/isotope/isotope.pkgd.min.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'vendor/sweetalert/sweetalert.min.js' %}"></script>
+<script>
+    $('.js-addwish-b2, .js-addwish-detail').on('click', function (e) {
+        e.preventDefault();
+    });
+
+    $('.js-addwish-b2').each(function () {
+        var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+        $(this).on('click', function () {
+            swal(nameProduct, "is added to wishlist !", "success");
+
+            $(this).addClass('js-addedwish-b2');
+            $(this).off('click');
+        });
+    });
+
+    $('.js-addwish-detail').each(function () {
+        var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+        $(this).on('click', function () {
+            swal(nameProduct, "is added to wishlist !", "success");
+
+            $(this).addClass('js-addedwish-detail');
+            $(this).off('click');
+        });
+    });
+
+    /*---------------------------------------------*/
+
+    $('.js-addcart-detail').each(function () {
+        var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+        $(this).on('click', function () {
+            swal(nameProduct, "is added to cart !", "success");
+        });
+    });
+
+</script>
+<!--===============================================================================================-->
+<script src="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+<script>
+    $('.js-pscroll').each(function () {
+        $(this).css('position', 'relative');
+        $(this).css('overflow', 'hidden');
+        var ps = new PerfectScrollbar(this, {
+            wheelSpeed: 1,
+            scrollingThreshold: 1000,
+            wheelPropagation: false,
+        });
+
+        $(window).on('resize', function () {
+            ps.update();
+        })
+    });
+</script>
+<!--===============================================================================================-->
+<script src="{% static 'js/main.js' %}"></script>
+
+{% endblock content %}

@@ -1,0 +1,54 @@
+.checkoutform label{
+    font-size: 14px !important;
+    font-weight: 600;
+}
+
+.checkoutform input{
+    font-size: 14px !important;
+}
+
+.whatsapp-chat{
+    position: fixed;
+    bottom: 05% !important;
+    left: 03% !important;
+}
+
+.search-bar{
+    width: 32% !important;
+    margin-left: 8px;
+}
+
+.showsearchbar{
+    display: none;
+}
+
+.searchbtn{
+    width: 40px;
+    color: #fff;
+    background-color: #999;
+}
+
+.searchbtn:hover{
+    color: azure;
+    background-color: #111;
+}
+
+@media only screen and (max-width: 991px){
+    .search-bar{
+        display: none;
+    }
+    .showsearchbar{
+        display: block;
+        width: 100% !important;
+        margin: 4px 5px;
+    }
+}
+
+@media only screen and (max-width: 592px){
+    
+    
+    /* .search-bar{
+        width: 100% !important;
+        margin: 4px 5px;
+    } */
+}
